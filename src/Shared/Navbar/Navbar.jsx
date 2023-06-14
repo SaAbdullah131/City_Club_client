@@ -3,13 +3,12 @@ import logo from '../../assets/city_club_logo.jpg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-
 const Navbar = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const navOptions = <>
-        <li><Link>Home</Link></li>
-        <li><Link>All Coaches</Link></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/allcoaches'>All Coaches</Link></li>
     </>
     return (
         <div>
@@ -23,7 +22,7 @@ const Navbar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <img className='w-[50px] h-[40px]' src={logo} alt="city club logo" />
+                    <img className='w-[60px] h-[50px] rounded-2xl' src={logo} alt="city club logo" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -33,8 +32,12 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ?
-                        <button className='btn bg-green-500 text-white uppercase'>LogOut</button>:
-                        <button className='btn bg-green-500 text-white uppercase'>Login</button>
+                            <Link to='/'>
+                                <button className='btn bg-green-500 text-white uppercase'>LogOut</button>
+                            </Link> :
+                            <Link to='/login'>
+                            <button className='btn bg-green-500 text-white uppercase'>Login</button>
+                            </Link>
                     }
                 </div>
             </div>

@@ -9,9 +9,19 @@ const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true);
     const [user,setUser] = useState(null);
 
+    // create user 
+    const createUser = () => {
+        
+    }
+    // login in google 
+    const loginGoogle = () => {
+        
+    }
     const authInfo = {
         user,
-        loading
+        loading,
+        createUser,
+        loginGoogle
         
     }
     return (
