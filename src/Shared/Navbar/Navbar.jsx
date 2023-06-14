@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/city_club_logo.jpg';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 
 const Navbar = () => {
+    const {user} = useContext(AuthContext);
+
     const navOptions = <>
         <li><Link>Home</Link></li>
         <li><Link>All Coaches</Link></li>
@@ -29,6 +32,8 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
+                        user ?
+                        <button className='btn bg-green-500 text-white uppercase'>LogOut</button>:
                         <button className='btn bg-green-500 text-white uppercase'>Login</button>
                     }
                 </div>
