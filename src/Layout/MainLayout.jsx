@@ -1,9 +1,10 @@
 import React from 'react';
+import Banner from '../Pages/Home/Banner/Banner';
 
 const MainLayout = () => {
     return (
         <div>
-            <h2>Hello From Main Layout</h2>
+            <Banner></Banner>
         </div>
     );
 };

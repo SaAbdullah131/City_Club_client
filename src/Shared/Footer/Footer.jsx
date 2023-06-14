@@ -7,7 +7,7 @@ const Footer = () => {
 
     return (
         <form>
-            <div class="footer p-10 bg-green-400 text-white font-semibold">
+            <div class="footer p-10 bg-green-400 text-white font-semibold rounded-xl">
                 <div>
                     <img className='w-[150px] h-[100px] rounded-full' src={footerLogo} />
                     <h className='text-xl'>City Club.<br />High Quality of Training</h>
@@ -39,7 +39,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="footer-center p-4 bg-green-400 text-base-content">
+            <div className="footer-center p-4 bg-green-400 text-mg font-semibold rounded-xl">
                 <div>
                     <p className='text-white'>Copyright © {year} - All right reserved by City Club</p>
                 </div>

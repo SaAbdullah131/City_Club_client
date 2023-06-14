@@ -9,7 +9,7 @@ import Register from '../Pages/Register/Register';
 import Error from "../Layout/Error";
 import Home from "../Pages/Home/Home/Home";
 import AllCoaches from '../Pages/AllCoaches/AllCoaches';
-
+import Session from '../Pages/Session/Session';
 const router = createBrowserRouter([
     {
       path: "/",
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
         {
           path:'allcoaches',
           element:<AllCoaches></AllCoaches>
+        },
+        {
+          path:'session',
+          element:<Session></Session>
         }
     ]
     },
