@@ -9,7 +9,7 @@ import AuthProvider from './Provider/AuthProvider';
 import { HelmetProvider } from "react-helmet-async";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <div className='container mx-auto'>
+  <div className='container mx-auto bg-green-100'>
     <HelmetProvider>
       <AuthProvider>
         <React.StrictMode>

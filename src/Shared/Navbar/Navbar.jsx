@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/city_club_logo.jpg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { MdDarkMode } from 'react-icons/Md';
 import { Helmet } from "react-helmet-async";
+// import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
+    const [isDarkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = (checked) => {
+        setDarkMode(checked)
+    };
 
     const navOptions = <>
 
@@ -24,9 +31,9 @@ const Navbar = () => {
     </>
     return (
         <>
-        <Helmet>
-            <title>City Club || Home </title>
-        </Helmet>
+            <Helmet>
+                <title>City Club || Home </title>
+            </Helmet>
             <div>
                 <div className="navbar bg-green-400 text-white font-bold mt-2 rounded-xl shadow-lg">
                     <div className="navbar-start">
@@ -46,9 +53,12 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        {
-                            <a><MdDarkMode className="h-[40px] w-[70px]"></MdDarkMode></a>
-                        }
+                        {/* <DarkModeSwitch
+                            style={{ marginBottom: '2rem' }}
+                            checked={isDarkMode}
+                            onChange={toggleDarkMode}
+                            size={120}
+                        /> */}
                         {
                             user ?
                                 <Link to='/'>

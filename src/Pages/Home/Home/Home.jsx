@@ -1,14 +1,17 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../../../Shared/Navbar/Navbar';
 import Footer from '../../../Shared/Footer/Footer';
 
 const Home = () => {
+    const location = useLocation();
+    const hideHeaderFooter = location.pathname.includes('login');
+    const hideHeaderFooterInRegister = location.pathname.includes('register');
     return (
         <div>
-            <Navbar></Navbar>
+            { (hideHeaderFooter || hideHeaderFooterInRegister) || <Navbar></Navbar> }
             <Outlet></Outlet>
-            <Footer></Footer>
+           { (hideHeaderFooter || hideHeaderFooterInRegister) ||  <Footer></Footer> }
         </div>
     );
 };
