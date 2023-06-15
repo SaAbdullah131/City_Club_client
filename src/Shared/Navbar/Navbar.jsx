@@ -4,13 +4,24 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { MdDarkMode } from 'react-icons/Md';
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css'
+
 // import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user,logOut,loading} = useContext(AuthContext);
     const [isDarkMode, setDarkMode] = useState(false);
 
+    const handleLogOut = () => {
+            logOut()
+            .then(()=>{})
+            .catch(error=>{
+                swal.fire('Log Out Does Not Work')
+            })
+    }
     const toggleDarkMode = (checked) => {
         setDarkMode(checked)
     };
@@ -60,9 +71,42 @@ const Navbar = () => {
                             size={120}
                         /> */}
                         {
+                            user && <>
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            {
+                                                !loading && <>
+                                                    <img className={user.displayName ? 'user-img-tooltip' : ''} src={user.photoURL ? user?.photoURL : 'https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg'} />
+                                                    <Tooltip
+                                                    style={{
+                                                            backgroundColor: "#1B9C85",
+                                                    }}
+                                                        anchorSelect='.user-img-tooltip'
+                                                        content={user?.displayName}
+                                                        place='left'
+                                                    ></Tooltip>
+                                                </>
+                                            }
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-4 p-2 bg-back text-tex rounded-box w-52">
+                                        <li>
+                                            <a className="justify-between">
+                                                Profile
+                                                <span className="badge">New</span>
+                                            </a>
+                                        </li>
+                                        <li><a>Settings</a></li>
+                                       
+                                    </ul>
+                                </div>
+                            </>
+                }
+                        {
                             user ?
                                 <Link to='/'>
-                                    <button className='btn bg-green-500 text-white uppercase'>LogOut</button>
+                                    <button onClick={handleLogOut} className='btn bg-green-500 text-white uppercase'>LogOut</button>
                                 </Link> :
                                 <Link to='/login'>
                                     <button className='btn bg-green-500 text-white uppercase'>Login</button>
