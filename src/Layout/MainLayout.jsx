@@ -3,7 +3,7 @@ import Banner from '../Pages/Home/Banner/Banner';
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className='mt-5 mb-5'>
             <Banner></Banner>
         </div>
     );

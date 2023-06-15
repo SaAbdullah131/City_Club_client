@@ -5,7 +5,7 @@ import app from '../Authentication/firebase.config';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true);
@@ -27,9 +27,9 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
     }
     // login in google 
-    const logInGoogle = (googleProvider) => {
+    const logInWithGoogle = ()=> {
         setLoading(true);
-        return signInWithPopup(auth,googleProvider);
+        return signInWithPopup(auth,provider)
     }
     // observer 
     useEffect(()=>{
@@ -58,7 +58,7 @@ const AuthProvider = ({children}) => {
         createUser,
         signIn,
         logOut,
-        logInGoogle,
+        logInWithGoogle,
         updateUserInfo
         
     }

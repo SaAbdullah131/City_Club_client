@@ -7,14 +7,14 @@ import {Helmet} from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-    const { signIn ,logInGoogle} = useContext(AuthContext);
+    const { signIn ,logInWithGoogle} = useContext(AuthContext);
 
     const handleGoogleLogin=(e)=> {
         e.preventDefault();
-        logInGoogle()
+        logInWithGoogle()
         .then(result=> {
             Swal.fire({
-                position: 'top-end',
+                position:'top-end',
                 icon: 'success',
                 title: 'Login Successful',
                 showConfirmButton:false,
