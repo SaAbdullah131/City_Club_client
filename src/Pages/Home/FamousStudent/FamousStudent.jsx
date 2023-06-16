@@ -8,7 +8,7 @@ const FamousStudent = () => {
          .then(res => res.json())
          .then(data => {
             setTopStudents(data);
-            console.log(data);
+           
          })
    }, []);
 
