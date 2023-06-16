@@ -9,11 +9,17 @@ import "swiper/css/pagination";
 const Banner = () => {
     
     return (
-        <div className='flex'>
-            <div className="w-1/2">
-                <h2>Welcome To City Club Areana</h2>
+        <div className='sm:flex-col sm:justify-center items-center md:flex-row lg:flex'>
+            <div className="sm:w-full md:w-1/2 lg:w-1/2 text-center my-20 p-2">
+                <h2 className="text-4xl font-bold text-cyan-400">The Athletic Aces || City Club</h2>
+                <h3 className="text-xl mb-3">Pushing the Limits of Greatness</h3>
+                <p className='text-lg p-3 mb-2'>If you are looking for ways to improve your physical and mental health, make new friends, and have fun, then joining a sports club is a great option. There are many different types of sports clubs available, so you are sure to find one that is a good fit for you.</p>
+                <div>
+                    <button className="btn btn-outline bg-green-400 mr-3">Join with us</button>
+                    <button className="btn btn-outline bg-green-400">Explore More</button>
+                </div>
             </div>
-            <div className="w-1/2">
+            <div className="sm:w-full md:w-1/2 lg:w-1/2">
             <Swiper
                 effect={"cube"}
                 grabCursor={true}

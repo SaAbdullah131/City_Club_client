@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import loginImg from '../../assets/city_club_login.gif';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate,useLocation} from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../Provider/AuthProvider';
 import {Helmet} from 'react-helmet-async';
@@ -8,6 +8,10 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     const { signIn ,logInWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleGoogleLogin=(e)=> {
         e.preventDefault();
@@ -20,6 +24,7 @@ const Login = () => {
                 showConfirmButton:false,
                 timer: 1500
               })
+              navigate(from,{replace:true});
         })
         .then(()=>{})
     }
@@ -36,6 +41,7 @@ const Login = () => {
                 Swal.fire({
                     title: 'User Login Successfully'
                   })
+                navigate(from,{replace:true});
             })
             .then(error => {
                 console.log(error);

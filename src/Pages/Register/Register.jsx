@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
-import{Link} from 'react-router-dom';
+import{Link,useNavigate} from 'react-router-dom';
 import signUpImg from '../../assets/city_club_signUp.gif';
 import {useForm} from 'react-hook-form';
 import {AuthContext} from '../../Provider/AuthProvider';
 import {Helmet} from 'react-helmet-async';
-const Register = () => {
-  const {createUser} = useContext(AuthContext);
+import Swal from 'sweetalert2';
 
+const Register = () => {
+  const {createUser,updateUserInfo} = useContext(AuthContext);
     const{register,handleSubmit,reset,formState:{errors}}= useForm();
+    const navigate = useNavigate();
 
     const onSubmit = data =>{
         console.log(data);
@@ -15,8 +17,23 @@ const Register = () => {
         .then((result)=>{
             const newUser = result.user;
             console.log(newUser);
+            updateUserInfo(data.name,data.photo)
+            .then(()=>{
+                console.log("user profile info updated");
+                reset();
+                Swal.fire({
+                    position:'top-end',
+                    icon:'success',
+                    title:'User Created successfully',
+                    showConfirmButton:false,
+                    timer:1500
+                });
+                navigate('/');
+            })
+            .catch(error=>console.log(error));
         })
-        .then()
+        .catch()
+       
         reset();
     }
     // const handleSignIn=(e)=>{
