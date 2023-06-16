@@ -7,7 +7,7 @@ const Dashboard = ()=> {
     const {dark} = useContext(ThemeContext);
     return (
         <div className={dark ? "dark":""}>
-            <div>
+            <div className='min-h-screen flex flex-col md:flex-row dashboard'>
                 <Sidebar></Sidebar>
                 <div className='w-full p-3'>
                     <Outlet></Outlet>

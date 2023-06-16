@@ -3,6 +3,8 @@ import useAdmin from '../../../Hooks/UseAdmin';
 import UseCoaches from '../../../Hooks/UseCoaches';
 import { FaUser,FaBars,FaClipboardCheck, FaClipboardList, FaChevronCircleLeft, FaCreditCard, FaChalkboardTeacher, FaBookOpen} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AdminDashboard from '../../../Pages/Dashboard/AdminDashboard/AdminDashboard';
+import StudentDashboard from '../../../Pages/Dashboard/StudentDashboard/StudentDashboard';
 
 const Sidebar = () => {
     const[open,setOpen] = useState(false);
@@ -28,7 +30,8 @@ const Sidebar = () => {
                         <Link to={`/dashboard/my-session`}className='flex items-center gap-2'><FaClipboardList></FaClipboardList>My Session</Link>
                         <Link to={`/dashboard/add-a-session`}className='flex items-center gap-2'><FaClipboardCheck></FaClipboardCheck>Add A Session</Link>
                     </>:<>
-                        <Link to={`/dashboard/admin`}className='flex items-center gap-2'><FaUser></FaUser>Student Home</Link>
+                       
+                        <Link to={`/dashboard/student`}className='flex items-center gap-2'><FaUser></FaUser>Student Home</Link>
                         <Link to={`/dashboard/my-enroll-session`}className='flex items-center gap-2'><FaClipboardCheck></FaClipboardCheck>My Enroll Session</Link>
                         <Link to={`/dashboard/my-selected-session`}className='flex items-center gap-2'><FaClipboardList></FaClipboardList>My Selected Session</Link>
                         <Link to={`/dashboard/payment-history`}className='flex items-center gap-2'><FaCreditCard></FaCreditCard>My Payment History</Link>

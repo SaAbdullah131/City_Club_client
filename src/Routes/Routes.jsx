@@ -17,6 +17,13 @@ import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
 import CoachesDashboard from "../Pages/Dashboard/CoachesDashboard/CoachesDashboard";
 import CoachesRoute from "./CoachesRoute";
 import AdminRoute from "./AdminRoute";
+import MySelectedSession from "../Pages/Dashboard/StudentDashboard/MySelectedSession";
+import MyEnrolSession from "../Pages/Dashboard/StudentDashboard/MyEnrolSession";
+import PaymentHistory from "../Pages/Dashboard/StudentDashboard/PaymentHistory";
+import ManageSession from "../Pages/Dashboard/AdminDashboard/ManageSession";
+import ManageUser from '../Pages/Dashboard/AdminDashboard/ManageUser';
+import MySession from "../Pages/Dashboard/CoachesDashboard/MySession";
+import AddSession from "../Pages/Dashboard/CoachesDashboard/AddSession";
 
 const router = createBrowserRouter([
     {
@@ -50,22 +57,50 @@ const router = createBrowserRouter([
       path:'/dashboard',
       element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
       children:[
-        // student dashboard 
-        {
-          path:'/dashboard/student',
-          element:<StudentDashboard></StudentDashboard>
-        },
 
         // Admin Dashboard
         {
           path:'/dashboard/admin',
           element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
+        {
+          path:'/dashboard/manage-session',
+          element:<ManageSession></ManageSession>
+        },
+        {
+          path:'/dashboard/manage-user',
+          element:<ManageUser></ManageUser>
+        },
+        // student dashboard 
+        {
+          path:'/dashboard/student',
+          element:<StudentDashboard></StudentDashboard>
+        },
+        {
+          path:'/dashboard/my-selected-session',
+          element:<MySelectedSession></MySelectedSession>
+        },
+        {
+          path:'/dashboard/my-enroll-session',
+          element:<MyEnrolSession></MyEnrolSession>
+        },
+        {
+          path:'/dashboard/payment-history',
+          element:<PaymentHistory></PaymentHistory>
+        },
 
         // Coaches DashBoard
         {
           path:'/dashboard/coaches',
           element:<CoachesRoute><CoachesDashboard></CoachesDashboard></CoachesRoute>
+        },
+        {
+          path:'dashboard/my-session',
+          element:<MySession></MySession>
+        },
+        {
+          path:'/dashboard/add-a-session',
+          element:<AddSession></AddSession>
         }
       ]
     }
