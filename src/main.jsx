@@ -8,18 +8,22 @@ import router from './Routes/Routes';
 import AuthProvider from './Provider/AuthProvider';
 import { HelmetProvider } from "react-helmet-async";
 import ThemeProvider from './Provider/ThemeProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className='container mx-auto bg-green-100'>
+    <React.StrictMode>
     <HelmetProvider>
       <ThemeProvider>
         <AuthProvider>
-          <React.StrictMode>
+          <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
-          </React.StrictMode>
+          </QueryClientProvider>
         </AuthProvider>
       </ThemeProvider>
     </HelmetProvider>
-  </div>
+  </React.StrictMode>
+  </div >
 
 )

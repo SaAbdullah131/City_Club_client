@@ -12,6 +12,9 @@ import AllCoaches from '../Pages/AllCoaches/AllCoaches';
 import Session from '../Pages/Session/Session';
 import PrivateRoutes from './PrivateRoutes';
 import Dashboard from '../Layout/Dashboard';
+import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
+import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
+import CoachesDashboard from "../Pages/Dashboard/CoachesDashboard/CoachesDashboard";
 
 const router = createBrowserRouter([
     {
@@ -43,7 +46,26 @@ const router = createBrowserRouter([
     },
     {
       path:'/dashboard',
-      element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+      element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+      children:[
+        // student dashboard 
+        {
+          path:'/dashboard/student',
+          element:<StudentDashboard></StudentDashboard>
+        },
+
+        // Admin Dashboard
+        {
+          path:'/dashboard/admin',
+          element:<AdminDashboard></AdminDashboard>
+        },
+
+        // Coaches DashBoard
+        {
+          path:'/dashboard/coaches',
+          element:<CoachesDashboard></CoachesDashboard>
+        }
+      ]
     }
   ]);
 
