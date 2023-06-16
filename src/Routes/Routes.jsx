@@ -15,6 +15,8 @@ import Dashboard from '../Layout/Dashboard';
 import StudentDashboard from "../Pages/Dashboard/StudentDashboard/StudentDashboard";
 import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
 import CoachesDashboard from "../Pages/Dashboard/CoachesDashboard/CoachesDashboard";
+import CoachesRoute from "./CoachesRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -57,13 +59,13 @@ const router = createBrowserRouter([
         // Admin Dashboard
         {
           path:'/dashboard/admin',
-          element:<AdminDashboard></AdminDashboard>
+          element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
 
         // Coaches DashBoard
         {
           path:'/dashboard/coaches',
-          element:<CoachesDashboard></CoachesDashboard>
+          element:<CoachesRoute><CoachesDashboard></CoachesDashboard></CoachesRoute>
         }
       ]
     }

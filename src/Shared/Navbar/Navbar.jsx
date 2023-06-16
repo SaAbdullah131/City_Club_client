@@ -10,6 +10,7 @@ import UseAdmin from '../../Hooks/UseAdmin';
 import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
+import UseCoaches from '../../Hooks/UseCoaches';
 
 // import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
@@ -20,12 +21,15 @@ const Navbar = () => {
     const [isDarkMode, setDarkMode] = useState(false);
 
     const [isAdmin] = UseAdmin();
+    const [isCoaches] = UseCoaches();
 
     const handleLogOut = () => {
             logOut()
-            .then(()=>{})
+            .then(()=>{
+                Swal.fire('Successfully Log out')
+            })
             .catch(error=>{
-                swal.fire('Log Out Does Not Work')
+                Swal.fire('Log Out Does Not Work')
             })
     }
     const toggleDarkMode = (checked) => {
@@ -37,13 +41,16 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allcoaches'>All Coaches</Link></li>
         <li><Link to='/session'>Session</Link></li>
+
         {
-            user ?
-                <>
-                    <li><Link to='/dashboard'>Dashboard</Link></li>
-                    <img src="" />
-                </> :
-                ''
+            isAdmin ?
+                
+                    <li><Link to='/dashboard/admin'>Dashboard</Link></li>
+                    :isCoaches ?
+                    <li><Link to='/dashboard/coaches'>Dashboard</Link></li>:
+                        user?
+                        <li><Link to='/dashboard/student'>Dashboard</Link></li>:
+                        <></>
         }
     </>
     return (
