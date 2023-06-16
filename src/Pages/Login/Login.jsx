@@ -44,7 +44,7 @@ const Login = () => {
                 navigate(from,{replace:true});
             })
             .then(error => {
-                console.log(error);
+                setError('Wrong password or Email')
             })
     }
     return (

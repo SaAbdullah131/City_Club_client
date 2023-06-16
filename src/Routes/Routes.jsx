@@ -10,6 +10,9 @@ import Error from "../Layout/Error";
 import Home from "../Pages/Home/Home/Home";
 import AllCoaches from '../Pages/AllCoaches/AllCoaches';
 import Session from '../Pages/Session/Session';
+import PrivateRoutes from './PrivateRoutes';
+import Dashboard from '../Layout/Dashboard';
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -38,6 +41,10 @@ const router = createBrowserRouter([
         }
     ]
     },
+    {
+      path:'/dashboard',
+      element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+    }
   ]);
 
 export default router;

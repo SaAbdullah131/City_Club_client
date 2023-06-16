@@ -17,7 +17,7 @@ const ThemeProvider = ({children}) => {
         }
     },[]);
 
-    const handleThemeToggle = ()=> {
+    const handleToggleTheme = ()=> {
         if(dark){
             localStorage.setItem('isDark','false');
         } else {
@@ -27,7 +27,7 @@ const ThemeProvider = ({children}) => {
     }
     const aboutTheme = {
         dark,
-        handleThemeToggle
+        handleToggleTheme
 
     }
     return (

@@ -2,8 +2,11 @@ import React, { useContext, useState } from 'react';
 import logo from '../../assets/city_club_logo.jpg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
-import { MdDarkMode } from 'react-icons/Md';
+import{FaMoon} from 'react-icons/fa';
+import {FiSun} from 'react-icons/fi';
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from '../../Provider/ThemeProvider';
+import UseAdmin from '../../Hooks/UseAdmin';
 import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
@@ -13,7 +16,10 @@ import 'react-tooltip/dist/react-tooltip.css'
 
 const Navbar = () => {
     const { user,logOut,loading} = useContext(AuthContext);
+    const {handleToggleTheme,dark} = useContext(ThemeContext);
     const [isDarkMode, setDarkMode] = useState(false);
+
+    const [isAdmin] = UseAdmin();
 
     const handleLogOut = () => {
             logOut()
@@ -34,7 +40,7 @@ const Navbar = () => {
         {
             user ?
                 <>
-                    <li><Link>Dashboard</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
                     <img src="" />
                 </> :
                 ''
@@ -63,13 +69,8 @@ const Navbar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <div className="navbar-end">
-                        {/* <DarkModeSwitch
-                            style={{ marginBottom: '2rem' }}
-                            checked={isDarkMode}
-                            onChange={toggleDarkMode}
-                            size={120}
-                        /> */}
+                    <div className="navbar-end gap-2">
+                        <button onClick={()=>handleToggleTheme()}>{dark ?<FiSun></FiSun>:<FaMoon></FaMoon>}</button>
                         {
                             user && <>
                                 <div className="dropdown dropdown-end">
