@@ -5,7 +5,8 @@ import axios  from 'axios';
 
 const axiosSecure = axios.create({
     baseURL:'https://summer-camp-school-server-inky.vercel.app/'
-})
+});
+
 const UseAxiosSecure = () => {
     const {logOut} = useContext(AuthContext);
     const navigate = useNavigate();

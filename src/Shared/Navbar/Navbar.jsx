@@ -21,7 +21,9 @@ const Navbar = () => {
     const [isDarkMode, setDarkMode] = useState(false);
 
     const [isAdmin] = UseAdmin();
-    const [isCoaches] = UseCoaches();
+    const [isCoach] = UseCoaches();
+    console.log(isAdmin);
+    console.log(isCoach);
 
     const handleLogOut = () => {
             logOut()
@@ -46,8 +48,8 @@ const Navbar = () => {
             isAdmin ?
                 
                     <li><Link to='/dashboard/admin'>Dashboard</Link></li>
-                    :isCoaches ?
-                    <li><Link to='/dashboard/coaches'>Dashboard</Link></li>:
+                    :isCoach ?
+                    <li><Link to='/dashboard/coach'>Dashboard</Link></li>:
                         user?
                         <li><Link to='/dashboard/student'>Dashboard</Link></li>:
                         <></>

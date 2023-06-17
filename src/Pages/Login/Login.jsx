@@ -1,88 +1,103 @@
-import React, { useContext } from 'react';
-import loginImg from '../../assets/city_club_login.gif';
-import { Link,useNavigate,useLocation} from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
+import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
-import {Helmet} from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
+
 const Login = () => {
-    const { signIn ,logInWithGoogle} = useContext(AuthContext);
+    const { signIn, logInWithGoogle } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
-    const from = location.state?.from?.pathname || "/";
+    // handle form submit
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        signIn(data.email, data.password)
+            .then(() =>{
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate(from, { replace: true });
+            })
 
-    const handleGoogleLogin=(e)=> {
-        e.preventDefault();
+    };
+    // login with google
+    const handleGoogleLogin = () => {
         logInWithGoogle()
-        .then(result=> {
-            Swal.fire({
-                position:'top-end',
-                icon: 'success',
-                title: 'Login Successful',
-                showConfirmButton:false,
-                timer: 1500
-              })
-              navigate(from,{replace:true});
-        })
-        .then(()=>{})
-    }
-    const handleLogin = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-        signIn(email, password)
             .then((result) => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
-                Swal.fire({
-                    title: 'User Login Successfully'
-                  })
-                navigate(from,{replace:true});
-            })
-            .then(error => {
-                setError('Wrong password or Email')
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
+                fetch('https://summer-camp-school-server-inky.vercel.app/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Login Successful',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate(from, { replace: true });
+                    })
             })
     }
+
+    // password show button
+    const [show, setShow] = useState(false);
+    const handleShow = (e) => {
+        e.preventDefault();
+        setShow(!show);
+    }
     return (
-        <div>
-            <Helmet>
-                <title>City Club || Login</title>
-            </Helmet>
-            <div className="hero min-h-screen bg-green-100">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="card md:w-3/4 sm:w-full shadow-2xl bg-green-100">
-                        <h1 className="text-2xl text-center font-bold">Login now!</h1>
-                        <form onSubmit={handleLogin} className="card-body border-s-4 border-e-4 border-yellow">
-                            <div className="form-control">
-                                <label className="label">
+        <div className="hero min-h-screen dark:text-slate-50">
+            <div className="hero-content w-full flex-col lg:flex-row">
+                <div className='md:w-1/2'>
+                    <div className="text-center">
+                        <h1 className="text-4xl font-bold">Login now!</h1>
+                        
+                    </div>
+                    <div className="card shadow-2xl bg-base-100  border-t-2">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                            <div className="form-control ">
+                                <label className="label ">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
+                                {errors.name && <span className="text-red-500">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text dark:text-slate-300">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                <div className="join">
+                                    <input {...register("password", { required: true })} type={show ? "text" : "password"} placeholder="password" className="input input-bordered grow text-slate-900" />
+                                    <button onClick={handleShow} className='btn btn-square'>{show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}</button>
+                                </div>
+                                {errors.name && <span className="text-red-500">Password is required</span>}
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover dark:text-slate-300">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <input className='btn bg-green-400' type="submit" value="Login" />
+                                <input className="btn"type="submit" value="Login" />
                             </div>
-                            <p>Are you New in City Club ? Please <Link to='/register' className='text-blue-500 font-semibold'>Register</Link></p>
                         </form>
-                        <div className="divider">OR</div>
-                        <button onClick={handleGoogleLogin}><FcGoogle className='mx-auto h-16 w-20 p-2'></FcGoogle></button>
-
-                    </div>
-                    <div>
-                        <img className='h-[500px] w-[650px] sm:invisible md:visible lg:visible' src={loginImg} alt="" />
+                        <p className='text-center font-semibold'> New In city Club? Please <Link to={`/register`} className='underline text-blue-500'>Register</Link> or login in with </p>
+                        <button onClick={handleGoogleLogin} className="btn btn-outline btn-info mx-auto mt-5 mb-9"><FaGoogle className='text-2xl'></FaGoogle></button>
                     </div>
                 </div>
             </div>

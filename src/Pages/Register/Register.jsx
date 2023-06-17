@@ -18,26 +18,37 @@ const Register = () => {
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
-            .then((result) => {
-                const newUser = result.user;
-                console.log(newUser);
+            .then(() => {
                 updateUserInfo(data.name, data.photo)
                     .then(() => {
-                        console.log("user profile info updated");
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User Created successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('https://summer-camp-school-server-inky.vercel.app/users', {
+                            method:'POST',
+                            headers:{
+                                'content-type':'application/json'
+                            },
+                            body:JSON.stringify(saveUser)
+                        }).
+                        then(res => res.json())
+                        .then(data=>{
+                            if(data.insertedId){
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Registration Successful',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate('/');
+                            }
+                        })
+                        
                         navigate('/');
                     })
                     .catch(error => console.log(error));
             })
             .catch()
-
         reset();
     }
     const handleShow = (event) => {
@@ -73,13 +84,13 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <div className='join'>
-                                    <input type="password"{...register("password",
+                                    <input {...register("password",
                                         {
                                             required: true,
                                             minLength: 6,
                                             maxLength: 16,
                                             pattern: /(?=.*[A-Z])(?=.*[!@#$&*%])/
-                                        })}type={show ? 'text':'password'} name='password' placeholder="Enter Your Password" className="input input-bordered" />
+                                        })} type={show ? 'text' : 'password'} name='password' placeholder="Enter Your Password" className="input input-bordered" />
                                     <button onClick={handleShow} className='btn btn-square'>
                                         {show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
                                     </button>
@@ -101,12 +112,13 @@ const Register = () => {
                                         <span className="label-text">Confirm Password</span>
                                     </label>
                                     <div className='joint'>
-                                        <input type="password" {...register("confirmPassword", { required: true,
-                                        validate:(value)=>value === watch('password') || 'Password and Confirm Password do not match'
+                                        <input  {...register("confirmPassword", {
+                                            required: true,
+                                            validate: (value) => value === watch('password') || 'Password and Confirm Password do not match'
                                         })} type={show ? 'text' : 'password'} name='confirmPassword' placeholder="Enter confirm password" className="input input-bordered" />
                                         <button onClick={handleShow} className='btn btn-square'>
-                                        {show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
-                                    </button>
+                                            {show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                                        </button>
                                     </div>
                                     {errors.confirmPassword && <span className="text-red-500">Confirm password is Required</span>}
 
