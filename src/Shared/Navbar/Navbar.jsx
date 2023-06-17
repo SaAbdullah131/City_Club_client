@@ -39,7 +39,7 @@ const Navbar = () => {
     const navOptions = <>
 
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/allcoaches'>All Coaches</Link></li>
+        <li><Link to='/allcoach'>All Coaches</Link></li>
         <li><Link to='/session'>Session</Link></li>
 
         {

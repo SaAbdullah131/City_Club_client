@@ -44,7 +44,7 @@ const router = createBrowserRouter([
           element:<Register></Register>
         },
         {
-          path:'allcoaches',
+          path:'allcoach',
           element:<AllCoaches></AllCoaches>
         },
         {

@@ -8,15 +8,15 @@ const UseCoaches = () => {
     const[axiosSecure] = UseAxiosSecure();
 
     // query 
-    const {data:isCoaches,isLoading:isCoachesLoading} = useQuery({
-        queryKey:['isCoaches',user?.email],
+    const {data:isCoach,isLoading:isCoachLoading} = useQuery({
+        queryKey:['isCoach',user?.email],
         enabled:!loading,
         queryFn: async()=> {
-            const res = await axiosSecure.get(`users/coaches/${user?.email}`) ;
+            const res = await axiosSecure.get(`users/coach/${user?.email}`) ;
             return res.data.coaches;
         }
     })
-    return [isCoaches,isCoachesLoading]
+    return [isCoach,isCoachLoading]
 };
 
 export default UseCoaches;
