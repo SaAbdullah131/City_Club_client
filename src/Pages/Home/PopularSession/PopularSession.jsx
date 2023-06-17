@@ -24,8 +24,6 @@ const PopularSession = () => {
                 setSession(data);  
             })
     }, []);
-    // console.log(session);
-
     const handleSelectedSession = session => {
         if (user && user.email) {
             const { sessionImage, sessionName, price, _id } = session;
@@ -36,16 +34,16 @@ const PopularSession = () => {
 
     return (
         <div className='p-4'>
-            <h2 className='text-center text-3xl font-bold'>Popular Session Here</h2>
-            <div className='grid grid-cols-3'>
+            <h2 className='text-center text-3xl font-bold p-2 underline'>Popular Session Here</h2>
+            <div className='grid md:grid-cols-2 grid-cols-1 gap-4'>
                 {
-                    session.map(item => {
+                    session.map(item => 
                         <PopuSessionCard
                          key={item._id}
                          item={item}
                          >
                         </PopuSessionCard>
-                    })
+                    )
                 }
             </div>
         </div>

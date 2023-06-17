@@ -45,11 +45,13 @@ const router = createBrowserRouter([
         },
         {
           path:'allcoach',
-          element:<AllCoaches></AllCoaches>
+          element:<AllCoaches></AllCoaches>,
+          loader:()=>fetch(`https://summer-camp-school-server-inky.vercel.app/allcoach`)
         },
         {
           path:'session',
-          element:<Session></Session>
+          element:<Session></Session>,
+          loader: () => { return fetch(`https://summer-camp-school-server-inky.vercel.app/session`)}
         }
     ]
     },
