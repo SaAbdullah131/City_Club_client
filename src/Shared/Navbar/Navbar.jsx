@@ -6,11 +6,11 @@ import{FaMoon} from 'react-icons/fa';
 import {FiSun} from 'react-icons/fi';
 import { Helmet } from "react-helmet-async";
 import { ThemeContext } from '../../Provider/ThemeProvider';
-import UseAdmin from '../../Hooks/UseAdmin';
+import useAdmin from '../../Hooks/useAdmin';
 import Swal from 'sweetalert2';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
-import UseCoaches from '../../Hooks/UseCoaches';
+import useCoaches from '../../Hooks/useCoaches';
 
 // import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
@@ -20,8 +20,8 @@ const Navbar = () => {
     const {handleToggleTheme,dark} = useContext(ThemeContext);
     const [isDarkMode, setDarkMode] = useState(false);
 
-    const [isAdmin] = UseAdmin();
-    const [isCoach] = UseCoaches();
+    const [isAdmin] = useAdmin();
+    const [isCoach] = useCoaches();
     console.log(isAdmin);
     console.log(isCoach);
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import UseSelected from '../../../hooks/UseSelected';
+import useSelected from '../../../Hooks/useSelected';
 import Swal from 'sweetalert2';
 import { FaTrashAlt, FaWallet } from 'react-icons/fa';
 
 const MySelectedSession = () => {
-    const [select, refetch] = UseSelected();
+    const [select, refetch] = useSelected();
     const total = select.reduce((sum, item) => item.price + sum, 0);
 
     const handleDelete = item => {

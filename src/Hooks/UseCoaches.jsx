@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
-import UseAxiosSecure from './UseAxiosSecure';
+import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from 'react-query';
 
-const UseCoaches = () => {
+const useCoaches = () => {
     const {user,loading} = useContext(AuthContext);
-    const[axiosSecure] = UseAxiosSecure();
+    const[axiosSecure] = useAxiosSecure();
 
     // query 
     const {data:isCoach,isLoading:isCoachLoading} = useQuery({
@@ -19,4 +19,4 @@ const UseCoaches = () => {
     return [isCoach,isCoachLoading]
 };
 
-export default UseCoaches;
+export default useCoaches;

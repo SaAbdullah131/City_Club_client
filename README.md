@@ -1,8 +1,8 @@
-# **City Club**
+#  **City Club**
 
 This website allows users to take classes online. Users can create an account and log in to select classes. Classes are taught by instructors who are experts in their field. Students can pay for classes using a secure payment system. Administrators can manage classes, instructors, and users.
 
-## _Features_
+##  _Features_
 
 - Registration and login system: This is a must-have for any website that wants to allow users to create accounts and log in. You can use a custom registration and login system, or you can use a third-party service like Google Sign-In or Facebook Login.
 
@@ -16,9 +16,9 @@ This website allows users to take classes online. Users can create an account an
 
 - dashboard: This page is only accessible to logged-in administrators or user or instructor. It should allow administrators to manage classes, instructors, and users. Users can see selected classes and make payment. Instructors can add new classes and update their classes.
 
-## _Live Sites Links_
+## 🔗 _Live Sites Links_
 
- **Website :** https://city-club-739b4.web.app/  
+ **Website :** https://city-club-739b4.web.app/
  **Server :** https://summer-camp-school-server-inky.vercel.app/
 
 ##  _Used Packages_
@@ -41,3 +41,5 @@ This website allows users to take classes online. Users can create an account an
     - sweetalert2
     - swiper
 ```
+
+

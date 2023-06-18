@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import UseCoaches from '../../../Hooks/UseCoaches';
-import UseAdmin from '../../../Hooks/UseAdmin';
-import UseSelected from '../../../Hooks/UseSelected';
+import useCoaches from '../../../Hooks/useCoaches';
+import useAdmin from '../../../Hooks/useAdmin';
+import useSelected from '../../../Hooks/useSelected';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import PopuSessionCard from './PopuSessionCard';
 
@@ -13,9 +13,9 @@ const PopularSession = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [isCoach] = UseCoaches();
-    const [isAdmin] = UseAdmin();
-    const [, refetch] = UseSelected();
+    const [isCoach] = useCoaches();
+    const [isAdmin] = useAdmin();
+    const [, refetch] = useSelected();
 
     useEffect(() => {
         fetch(`https://summer-camp-school-server-inky.vercel.app/popular-session`)

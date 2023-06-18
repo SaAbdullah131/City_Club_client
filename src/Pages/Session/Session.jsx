@@ -2,9 +2,9 @@ import React, { useContext  } from 'react';
 import {  useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
-import useAdmin from '../../Hooks/UseAdmin';
-import UseCoaches from '../../Hooks/UseCoaches';
-import UseSelected from '../../Hooks/UseSelected';
+import useAdmin from '../../Hooks/useAdmin';
+import useCoaches from '../../Hooks/useCoaches';
+import useSelected from '../../Hooks/useSelected';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -16,9 +16,9 @@ const Session = () => {
     const location = useLocation();
 
     const [isAdmin] = useAdmin();
-    const [isCoach] = UseCoaches();
+    const [isCoach] = useCoaches();
 
-    const [, refetch] = UseSelected();
+    const [, refetch] = useSelected();
 
     const handleSelectClass = item => {
         if(user && user.email){

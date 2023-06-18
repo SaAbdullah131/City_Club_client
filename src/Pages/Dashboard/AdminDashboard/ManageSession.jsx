@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const ManageSession = () => {
     const [items, setItems] = useState([]);
-    const [axiosSecure] = UseAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
 
     useEffect(() => {
         axiosSecure.get('/all-classes')

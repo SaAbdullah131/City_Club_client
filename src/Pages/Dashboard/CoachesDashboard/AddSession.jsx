@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
-import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 
@@ -10,7 +10,7 @@ const AddAClass = () => {
   
     const { user } = useContext(AuthContext);
 
-    const [axiosSecure] = UseAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
 
 
     const handleSubmit = event => {

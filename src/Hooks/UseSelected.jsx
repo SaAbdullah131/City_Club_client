@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
-import UseAxiosSecure from './UseAxiosSecure';
+import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from 'react-query';
 
-const UseSelected = () => {
+const useSelected = () => {
     const {user,loading} = useContext(AuthContext);
-    const[axiosSecure] = UseAxiosSecure();
+    const[axiosSecure] = useAxiosSecure();
     const {refetch,data:select=[]} = useQuery({
         queryKey:['selects',user?.email],
         enabled:!loading,
@@ -17,4 +17,4 @@ const UseSelected = () => {
     return [select,refetch];
 };
 
-export default UseSelected;
+export default useSelected;

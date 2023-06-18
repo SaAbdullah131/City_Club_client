@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import useAdmin from '../../../Hooks/UseAdmin';
-import UseCoaches from '../../../Hooks/UseCoaches';
+import useAdmin from '../../../Hooks/useAdmin';
+import useCoaches from '../../../Hooks/useCoaches';
 import { FaUser,FaBars,FaClipboardCheck, FaClipboardList, FaChevronCircleLeft, FaCreditCard, FaChalkboardTeacher, FaBookOpen} from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import AdminDashboard from '../../../Pages/Dashboard/AdminDashboard/AdminDashboard';
@@ -9,7 +9,7 @@ import StudentDashboard from '../../../Pages/Dashboard/StudentDashboard/StudentD
 const Sidebar = () => {
     const[open,setOpen] = useState(false);
     const [isAdmin] = useAdmin();
-    const [isCoach] = UseCoaches();
+    const [isCoach] = useCoaches();
 
     return (
         <div className='w-full md:w-3/12 bg-blue-500 text-black mt-4 pt-3 p-4'>

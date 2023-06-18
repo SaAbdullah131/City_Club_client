@@ -15,15 +15,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <div className='container mx-auto bg-green-100'>
     <React.StrictMode>
       <AuthProvider>
-    <HelmetProvider>
-      <ThemeProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
-      </ThemeProvider>
-    </HelmetProvider>
-    </AuthProvider>
-  </React.StrictMode>
+        <HelmetProvider>
+          <ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </ThemeProvider>
+
+        </HelmetProvider>
+      </AuthProvider>
+    </React.StrictMode>
   </div >
 
 )
