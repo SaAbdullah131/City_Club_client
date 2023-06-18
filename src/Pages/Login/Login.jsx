@@ -9,7 +9,7 @@ import loginImage from '../../assets/city_club_login.gif';
 
 const Login = () => {
     const { signIn, logInWithGoogle } = useContext(AuthContext);
-
+    const [err, setErr] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -27,6 +27,12 @@ const Login = () => {
                     timer: 1500
                 })
                 navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error.code)
+                if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found"){
+                    setErr("Wrong Email or Password! Please provide correct information.")
+                }
             })
 
     };
@@ -92,6 +98,7 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            <p className='text-red-500 font-semibold'>{err}</p>
                             <div className="form-control mt-6">
                                 <input className="btn btn-info"type="submit" value="Login" />
                             </div>
