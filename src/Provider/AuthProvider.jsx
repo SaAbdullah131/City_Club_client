@@ -3,15 +3,15 @@ import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuth
 import app from '../Authentication/firebase.config';
 import axios from 'axios';
 
-
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+
 const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true);
     const [user,setUser] = useState(null);
-
+  
     // create user 
     const createUser = (email,password) => {
         setLoading(true);
@@ -36,17 +36,16 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe =  onAuthStateChanged(auth,currentUser =>{
              setUser(currentUser);
-             if(currentUser) {
-                axios.post('https://summer-camp-school-server-inky.vercel.app/jwt',{
-                email:currentUser.email
-            })
-            .then(data=>{
-                localStorage.setItem('access_token',data.data.token)
-                setLoading(false);
-            })
-            } else {
-                localStorage.removeItem('access_token')
-            }     
+             if(currentUser){
+                axios.post('https://summer-camp-school-server-inky.vercel.app/jwt', {email: currentUser.email})
+                .then(data => {
+                    localStorage.setItem('access-token', data.data.token)
+                    setLoading(false)
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+            }
          })
          return ()=>{
              return unsubscribe();

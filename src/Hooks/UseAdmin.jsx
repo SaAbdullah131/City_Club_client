@@ -3,7 +3,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import UseAxiosSecure from './UseAxiosSecure';
 import { useQuery } from 'react-query';
 
-const useAdmin = () => {
+const UseAdmin = () => {
     const{user,loading} = useContext(AuthContext);
     const [axiosSecure] = UseAxiosSecure();
 
@@ -21,4 +21,4 @@ const useAdmin = () => {
     
 };
 
-export default useAdmin;
+export default UseAdmin;

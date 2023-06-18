@@ -46,7 +46,6 @@ const Navbar = () => {
 
         {
             isAdmin ?
-                
                     <li><Link to='/dashboard/admin'>Dashboard</Link></li>
                     :isCoach ?
                     <li><Link to='/dashboard/coach'>Dashboard</Link></li>:

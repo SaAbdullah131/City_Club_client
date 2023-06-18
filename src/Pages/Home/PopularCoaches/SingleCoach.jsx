@@ -4,7 +4,7 @@ const SingleCoach = ({ c }) => {
     const { coachName,  coachImage, coachEmail } = c;
     // console.log(c);
     return (
-        <div className="hero h-[400px]" style={{backgroundImage:`url({${coachImage}} )` }}>
+        <div className="hero h-[400px] rounded-full" style={{backgroundImage:`url({${coachImage}} )` }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">

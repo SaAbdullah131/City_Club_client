@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import loginImage from '../../assets/city_club_login.gif';
 
 
 const Login = () => {
@@ -63,12 +64,11 @@ const Login = () => {
         setShow(!show);
     }
     return (
-        <div className="hero min-h-screen dark:text-slate-50">
+        <div className="hero min-h-screen">
             <div className="hero-content w-full flex-col lg:flex-row">
                 <div className='md:w-1/2'>
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold">Login now!</h1>
-                        
+                        <h1 className="text-4xl font-bold">Login now!</h1>    
                     </div>
                     <div className="card shadow-2xl bg-base-100  border-t-2">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -81,7 +81,7 @@ const Login = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-slate-300">Password</span>
+                                    <span className="label-text">Password</span>
                                 </label>
                                 <div className="join">
                                     <input {...register("password", { required: true })} type={show ? "text" : "password"} placeholder="password" className="input input-bordered grow text-slate-900" />
@@ -89,17 +89,18 @@ const Login = () => {
                                 </div>
                                 {errors.name && <span className="text-red-500">Password is required</span>}
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover dark:text-slate-300">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn"type="submit" value="Login" />
+                                <input className="btn btn-info"type="submit" value="Login" />
                             </div>
                         </form>
                         <p className='text-center font-semibold'> New In city Club? Please <Link to={`/register`} className='underline text-blue-500'>Register</Link> or login in with </p>
                         <button onClick={handleGoogleLogin} className="btn btn-outline btn-info mx-auto mt-5 mb-9"><FaGoogle className='text-2xl'></FaGoogle></button>
                     </div>
                 </div>
+                <img src={loginImage}/>
             </div>
         </div>
     );

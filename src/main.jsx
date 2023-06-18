@@ -14,15 +14,15 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className='container mx-auto bg-green-100'>
     <React.StrictMode>
+      <AuthProvider>
     <HelmetProvider>
       <ThemeProvider>
-        <AuthProvider>
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
           </QueryClientProvider>
-        </AuthProvider>
       </ThemeProvider>
     </HelmetProvider>
+    </AuthProvider>
   </React.StrictMode>
   </div >
 
